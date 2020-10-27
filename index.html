@@ -64,6 +64,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-GSAP-ScrollTrigger" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/18/GSAP-ScrollTrigger/" class="article-date">
+  <time datetime="2020-10-18T03:54:20.000Z" itemprop="datePublished">2020-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/18/GSAP-ScrollTrigger/">GSAP ScrollTrigger</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ScrollTrigger-學習"><a href="#ScrollTrigger-學習" class="headerlink" title="ScrollTrigger 學習"></a>ScrollTrigger 學習</h1><h4 id="scrollTrigger-設定值"><a href="#scrollTrigger-設定值" class="headerlink" title="scrollTrigger 設定值"></a>scrollTrigger 設定值</h4><h5 id="toggleActions"><a href="#toggleActions" class="headerlink" title="toggleActions"></a>toggleActions</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toggleActions: &#39;play none none none&#39;  &#x2F;&#x2F; default</span><br></pre></td></tr></table></figure>
+<p><strong>param1</strong><br><br>物件進入視區時，從 scroll-end -&gt; start<br><br><strong>param2</strong><br><br>如果完全超過被 trigger 物件 endpoint 時<br><br><strong>param3</strong><br><br>如果物件又反向，回到視區時 scroll-end -&gt; end (反向)<br><br><strong>param4</strong><br><br>如果物件又反向 完全超過 start 線時 scroll-start -&gt; start(反向)<br></p>
+<h6 id="action-可帶入的值"><a href="#action-可帶入的值" class="headerlink" title="action 可帶入的值"></a>action 可帶入的值</h6><ul>
+<li>play</li>
+<li>pause</li>
+<li>resume</li>
+<li>reverse</li>
+<li>restart</li>
+<li>reset</li>
+<li>complete</li>
+<li>none</li>
+</ul>
+<h5 id="start"><a href="#start" class="headerlink" title="start"></a>start</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start: top center</span><br></pre></td></tr></table></figure>
+
+<p><strong>param1</strong><br><br>trigger 物件的觸發設定<br><br><strong>param2</strong><br><br>視區的觸發設定<br></p>
+<h5 id="scrub"><a href="#scrub" class="headerlink" title="scrub"></a>scrub</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrub: true</span><br></pre></td></tr></table></figure>
+<p>物件會隨著 scroll 的比例移動。原本的動畫，只要一 trigger，就會開始執行。可是設定 scrub 之後，動畫就會依 scroll 的比例，跑到相對應的進程。</p>
+<p>scrub 也可以給定數字，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrub: 1</span><br></pre></td></tr></table></figure>
+<p>數字越大表示有越久的時間緩衝到相對應的動畫。</p>
+<h5 id="pin"><a href="#pin" class="headerlink" title="pin"></a>pin</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pin: true</span><br><span class="line">pin: &#123;element&#125;</span><br></pre></td></tr></table></figure>
+<p>pin 的意思是指，設定為 pin 的這個物件，會被固定在 trigger 的 scroller-start這條線上，直到 end。</p>
+<p>預設 scrolltrigger 會在 pin element 的下方加上 padding。</p>
+<h5 id="snap"><a href="#snap" class="headerlink" title="snap"></a>snap</h5><h5 id="onEnter"><a href="#onEnter" class="headerlink" title="onEnter"></a>onEnter</h5><p>當 scroller-start 從正向經過 start 時</p>
+<h5 id="onLeave"><a href="#onLeave" class="headerlink" title="onLeave"></a>onLeave</h5><p>當 scroller-end 從正向經過 end 時</p>
+<h5 id="id"><a href="#id" class="headerlink" title="id"></a>id</h5><p>可以讓 marker 顯示該 scrollTrigger 的名稱。方便有多個 markers 的時候。</p>
+<p>也可以透過</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ScrollTrigger.getById()</span><br></pre></td></tr></table></figure>
+<p>取得該 trigger 物件</p>
+<h5 id="scroller"><a href="#scroller" class="headerlink" title="scroller"></a>scroller</h5><p>預設 scroller 是 window。如果要更改，也可以設定此值。</p>
+<h5 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h5><p>使用 scrollTrigger 最好的方式是在<code>外層時間軸</code>或是<code>獨立的時間軸</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wen0720.github.io/2020/10/18/GSAP-ScrollTrigger/" data-id="ckgs4y18i0005rzpq22kfdnbr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LIFF-app-初體驗" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" class="article-date">
@@ -131,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckg4l45gi0003bbpq7r5m71ji" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckgs4y18j0006rzpqacsra963" class="article-share-link">Share</a>
       
       
     </footer>
@@ -180,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckg4l45gp0004bbpqhrqk2lpo" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckgs4y18n0007rzpq7gnxgedb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,6 +286,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/10/18/GSAP-ScrollTrigger/">GSAP ScrollTrigger</a>
+          </li>
         
           <li>
             <a href="/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/">LIFF app 初體驗</a>
