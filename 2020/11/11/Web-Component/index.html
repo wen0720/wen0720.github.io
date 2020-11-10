@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Web Component | Paper coding Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="web component custom element 可以建立自己的客製化元素。 由CustomElementRegistry來產生自己客製的元件。 註冊新元件 12345&#x2F;&#x2F; CustomElementRegistry.define(&amp;#x27;component-name&amp;#x27;, class, [extend property])CustomElementRegistry.defin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Component">
+<meta property="og:url" content="https://wen0720.github.io/2020/11/11/Web-Component/index.html">
+<meta property="og:site_name" content="Paper coding Blog">
+<meta property="og:description" content="web component custom element 可以建立自己的客製化元素。 由CustomElementRegistry來產生自己客製的元件。 註冊新元件 12345&#x2F;&#x2F; CustomElementRegistry.define(&amp;#x27;component-name&amp;#x27;, class, [extend property])CustomElementRegistry.defin">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-11-10T16:45:12.000Z">
+<meta property="article:modified_time" content="2020-11-10T16:47:04.318Z">
+<meta property="article:author" content="Paper Chen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Paper coding Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Paper coding Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wen0720.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Web-Component" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/11/Web-Component/" class="article-date">
+  <time datetime="2020-11-10T16:45:12.000Z" itemprop="datePublished">2020-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web Component
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="web-component"><a href="#web-component" class="headerlink" title="web component"></a>web component</h2><ol>
+<li><p>custom element<br> 可以建立自己的客製化元素。<br> 由<code>CustomElementRegistry</code>來產生自己客製的元件。</p>
+<h5 id="註冊新元件"><a href="#註冊新元件" class="headerlink" title="註冊新元件"></a>註冊新元件</h5> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CustomElementRegistry.define(&#x27;component-name&#x27;, class, [extend property])</span></span><br><span class="line"></span><br><span class="line">CustomElementRegistry.define(<span class="string">&#x27;word-count&#x27;</span>, WordCount, &#123;</span><br><span class="line">    <span class="keyword">extends</span>: <span class="string">&#x27;p&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> <strong>參數1</strong><br> 元件名稱（必須使用 kebab-case）<br> <strong>參數2</strong><br> 封裝元件行為的 class<br> <strong>參數3</strong>option<br> 繼承的 property，可以繼承內置的元素</p>
+<h5 id="Life-Cycle"><a href="#Life-Cycle" class="headerlink" title="Life Cycle"></a>Life Cycle</h5><p> custom element 有自己的 life cycle。包含 connectedCallback、attributeChangedCallback</p>
+<p> <strong>connectedCallback</strong><br> 再每一次 custom element append 進有 document-connected 的 element 時觸發。會在 element 的 content 尚未完全 parsed 的時候觸發。</p>
+<blockquote>
+<p>只要 element 不是 connect 狀態，<code>connectedCallback</code> 就會在觸發。可以用 Node.isConnected 確認。</p>
+</blockquote>
+<p> <strong>disconnectedCallback</strong><br> 相對於 <code>connectCallback</code></p>
+<p> <strong>adoptedCallback</strong><br>  custom element 每次移到新的 document 時觸發。<br> <strong>attributeChangedCallback</strong></p>
+</li>
+</ol>
+<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><pre><code>custom element 通常有 2 種形式。
+- Autonomous custom elements。完全獨立的 element
+    不繼承任何其他元素。
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure>
+- Customized built-in elements。繼承已存在的 html element
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
+<ol start="2">
+<li><p>shadow DOM<br> shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
+<p> 所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p> 下面是 shadow DOM 的相關術語</p>
+<ol>
+<li><p>shadow host: 一般的 DOM，shadow DOM is attach to</p>
+</li>
+<li><p>shadow tree: 在shadow DOM 裡的 DOM Tree </p>
+</li>
+<li><p>shadow boundary: shadow DOM 的結束，DOM 的開始</p>
+</li>
+<li><p>shadow root: shadow tree 的根節點</p>
+<p>shadow DOM 的優點就是，在 shadow DOM 裡的樣式，不會影響外面的 DOM。但可以在外面是直接影響裡面的 shadow DOM（也可以不）</p>
+<p>其實 shadow DOM 並不是很新的技術，html 5 的 video 就是 shadow DOM 的實作。你會發現影片有很多的元件，播放控制項拉等等，可是無法從外部控制。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="MODE"><a href="#MODE" class="headerlink" title="MODE"></a>MODE</h5><pre><code>如果設定 `&#123; mode: &#39;closed&#39; &#125;`，即表示沒辦法透過 js 取得 `myCustomElem.shadowRoot`。表示沒有辦法透過外層直接改變 shadow DOM 的內容。</code></pre>
+<ol start="3">
+<li>html template</li>
+</ol>
+<h5 id="使用-web-component-可以解決的缺點"><a href="#使用-web-component-可以解決的缺點" class="headerlink" title="使用 web component 可以解決的缺點"></a>使用 web component 可以解決的缺點</h5><ol>
+<li>假設要使用別人的 library 可能需要先載入對方套件裡用的 jQuery、css…</li>
+<li>css 的 scope 問題。</li>
+<li>相容性：各 framework 的 component 無法共用。如果要把舊專案移植到 React 的話，也是要花一些時間調整。</li>
+</ol>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>React 的主旨在於 state 跟 view 的管理方式。<br>而 web components 在於整理元件的封裝，包含 scoped css 等。</p>
+<p>並不是每一個 elemebt 都有 attachShadow 可以使用。</p>
+<h5 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h5><ol>
+<li>shadow DOM 解決了 css 的問題，也把所有功能都封裝起來。可是，要如何更好寫 html。<br>Ans: html Template</li>
+</ol>
+<h4 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h4><p><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2017/01/06/web-components/">https://blog.techbridge.cc/2017/01/06/web-components/</a></p>
+<p>shadow DOM <br><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM</a><br><a target="_blank" rel="noopener" href="https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af">https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af</a></p>
+<p>html tempalte<br><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots">https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/08/web_components.html">http://www.ruanyifeng.com/blog/2019/08/web_components.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7jmll000969pqao7r57ir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/11/Git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/11/Web-Component/">Web Component</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/11/Git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/GSAP-ScrollTrigger/">GSAP ScrollTrigger</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/">LIFF app 初體驗</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/22/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Paper Chen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

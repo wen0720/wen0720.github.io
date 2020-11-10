@@ -64,6 +64,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Web-Component" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/11/Web-Component/" class="article-date">
+  <time datetime="2020-11-10T16:45:12.000Z" itemprop="datePublished">2020-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/11/Web-Component/">Web Component</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="web-component"><a href="#web-component" class="headerlink" title="web component"></a>web component</h2><ol>
+<li><p>custom element<br> 可以建立自己的客製化元素。<br> 由<code>CustomElementRegistry</code>來產生自己客製的元件。</p>
+<h5 id="註冊新元件"><a href="#註冊新元件" class="headerlink" title="註冊新元件"></a>註冊新元件</h5> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CustomElementRegistry.define(&#x27;component-name&#x27;, class, [extend property])</span></span><br><span class="line"></span><br><span class="line">CustomElementRegistry.define(<span class="string">&#x27;word-count&#x27;</span>, WordCount, &#123;</span><br><span class="line">    <span class="keyword">extends</span>: <span class="string">&#x27;p&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> <strong>參數1</strong><br> 元件名稱（必須使用 kebab-case）<br> <strong>參數2</strong><br> 封裝元件行為的 class<br> <strong>參數3</strong>option<br> 繼承的 property，可以繼承內置的元素</p>
+<h5 id="Life-Cycle"><a href="#Life-Cycle" class="headerlink" title="Life Cycle"></a>Life Cycle</h5><p> custom element 有自己的 life cycle。包含 connectedCallback、attributeChangedCallback</p>
+<p> <strong>connectedCallback</strong><br> 再每一次 custom element append 進有 document-connected 的 element 時觸發。會在 element 的 content 尚未完全 parsed 的時候觸發。</p>
+<blockquote>
+<p>只要 element 不是 connect 狀態，<code>connectedCallback</code> 就會在觸發。可以用 Node.isConnected 確認。</p>
+</blockquote>
+<p> <strong>disconnectedCallback</strong><br> 相對於 <code>connectCallback</code></p>
+<p> <strong>adoptedCallback</strong><br>  custom element 每次移到新的 document 時觸發。<br> <strong>attributeChangedCallback</strong></p>
+</li>
+</ol>
+<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><pre><code>custom element 通常有 2 種形式。
+- Autonomous custom elements。完全獨立的 element
+    不繼承任何其他元素。
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure>
+- Customized built-in elements。繼承已存在的 html element
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
+<ol start="2">
+<li><p>shadow DOM<br> shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
+<p> 所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p> 下面是 shadow DOM 的相關術語</p>
+<ol>
+<li><p>shadow host: 一般的 DOM，shadow DOM is attach to</p>
+</li>
+<li><p>shadow tree: 在shadow DOM 裡的 DOM Tree </p>
+</li>
+<li><p>shadow boundary: shadow DOM 的結束，DOM 的開始</p>
+</li>
+<li><p>shadow root: shadow tree 的根節點</p>
+<p>shadow DOM 的優點就是，在 shadow DOM 裡的樣式，不會影響外面的 DOM。但可以在外面是直接影響裡面的 shadow DOM（也可以不）</p>
+<p>其實 shadow DOM 並不是很新的技術，html 5 的 video 就是 shadow DOM 的實作。你會發現影片有很多的元件，播放控制項拉等等，可是無法從外部控制。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="MODE"><a href="#MODE" class="headerlink" title="MODE"></a>MODE</h5><pre><code>如果設定 `&#123; mode: &#39;closed&#39; &#125;`，即表示沒辦法透過 js 取得 `myCustomElem.shadowRoot`。表示沒有辦法透過外層直接改變 shadow DOM 的內容。</code></pre>
+<ol start="3">
+<li>html template</li>
+</ol>
+<h5 id="使用-web-component-可以解決的缺點"><a href="#使用-web-component-可以解決的缺點" class="headerlink" title="使用 web component 可以解決的缺點"></a>使用 web component 可以解決的缺點</h5><ol>
+<li>假設要使用別人的 library 可能需要先載入對方套件裡用的 jQuery、css…</li>
+<li>css 的 scope 問題。</li>
+<li>相容性：各 framework 的 component 無法共用。如果要把舊專案移植到 React 的話，也是要花一些時間調整。</li>
+</ol>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>React 的主旨在於 state 跟 view 的管理方式。<br>而 web components 在於整理元件的封裝，包含 scoped css 等。</p>
+<p>並不是每一個 elemebt 都有 attachShadow 可以使用。</p>
+<h5 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h5><ol>
+<li>shadow DOM 解決了 css 的問題，也把所有功能都封裝起來。可是，要如何更好寫 html。<br>Ans: html Template</li>
+</ol>
+<h4 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h4><p><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2017/01/06/web-components/">https://blog.techbridge.cc/2017/01/06/web-components/</a></p>
+<p>shadow DOM <br><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM</a><br><a target="_blank" rel="noopener" href="https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af">https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af</a></p>
+<p>html tempalte<br><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots">https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/08/web_components.html">http://www.ruanyifeng.com/blog/2019/08/web_components.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7jmll000969pqao7r57ir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/11/11/Git/" class="article-date">
@@ -130,7 +222,7 @@
 <p>要解決這個問題就是用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure>
 
-<h3 id="x67-x69-116-64-x32-x2e-57-x2e-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#x67-x69-116-64-x32-x2e-57-x2e-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#x67;&#x69;&#116;&#64;&#x32;&#x2e;&#57;&#x2e;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#x67;&#x69;&#116;&#64;&#x32;&#x2e;&#57;&#x2e;&#x30;">&#x67;&#x69;&#116;&#64;&#x32;&#x2e;&#57;&#x2e;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
+<h3 id="x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;">&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
 <hr>
 <p>還原工作目錄與索引，會跟最後一次 commit 保持一樣<br>git reset –hard<br>（使用 hard 的話，會拋棄當前工作區的修改）</p>
 <p>退回到之前的版本，並且保留當前工作區的修改<br>git reset –soft &lt;版本號&gt;<br> <br>全部檔案取消索引<br>git reset HEAD<br> <br>單一檔案取消索引<br>git reset HEAD 檔案名稱 <br> <br>恢復單一檔案到最新 commit 狀態<br>git checkout 檔案名稱 <br> <br>刪除最近一次 commit<br>git reset –hard “HEAD^” <br> <br>上面語法如果刪除錯了可以再用此語法還原<br>git reset –hard ORIG_HEAD<br> <br>刪除最近一次 commit，但保留異動內容<br>git reset –soft “HEAD^” <br> <br>commit 後發現有幾個檔案忘了加入進去，想要補內容進去時<br>git commit –amend</p>
@@ -142,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7cqjc00083zpqbrte809p" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7jmlk000769pqdu9q71xo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -209,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/10/18/GSAP-ScrollTrigger/" data-id="ckhc7cqj900063zpq4r076yhu" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/10/18/GSAP-ScrollTrigger/" data-id="ckhc7jmlj000669pq31gv280b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckhc7cqjb00073zpq6njucax9" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckhc7jmlk000869pq9z546urh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckhc7cqje00093zpq1zxmeqwq" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckhc7jmlm000a69pq26ke1yzi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,6 +466,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/11/11/Web-Component/">Web Component</a>
+          </li>
         
           <li>
             <a href="/2020/11/11/Git/">Git</a>
