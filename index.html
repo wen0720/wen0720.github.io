@@ -99,31 +99,30 @@
 <p> <strong>adoptedCallback</strong><br>  custom element 每次移到新的 document 時觸發。<br> <strong>attributeChangedCallback</strong></p>
 </li>
 </ol>
-<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><pre><code>custom element 通常有 2 種形式。
-- Autonomous custom elements。完全獨立的 element
-    不繼承任何其他元素。
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure>
-- Customized built-in elements。繼承已存在的 html element
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
+<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>custom element 通常有 2 種形式。</p>
+<ul>
+<li><p>Autonomous custom elements。完全獨立的 element<br>不繼承任何其他元素。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>Customized built-in elements。繼承已存在的 html element</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
 <ol start="2">
-<li><p>shadow DOM<br> shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
-<p> 所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-<p> 下面是 shadow DOM 的相關術語</p>
+<li><p>shadow DOM<br>shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
+<p>所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>下面是 shadow DOM 的相關術語</p>
 <ol>
-<li><p>shadow host: 一般的 DOM，shadow DOM is attach to</p>
-</li>
-<li><p>shadow tree: 在shadow DOM 裡的 DOM Tree </p>
-</li>
-<li><p>shadow boundary: shadow DOM 的結束，DOM 的開始</p>
-</li>
-<li><p>shadow root: shadow tree 的根節點</p>
+<li>shadow host: 一般的 DOM，shadow DOM is attach to</li>
+<li>shadow tree: 在shadow DOM 裡的 DOM Tree </li>
+<li>shadow boundary: shadow DOM 的結束，DOM 的開始</li>
+<li>shadow root: shadow tree 的根節點</li>
+</ol>
 <p>shadow DOM 的優點就是，在 shadow DOM 裡的樣式，不會影響外面的 DOM。但可以在外面是直接影響裡面的 shadow DOM（也可以不）</p>
 <p>其實 shadow DOM 並不是很新的技術，html 5 的 video 就是 shadow DOM 的實作。你會發現影片有很多的元件，播放控制項拉等等，可是無法從外部控制。</p>
 </li>
 </ol>
 </li>
-</ol>
+</ul>
 <h5 id="MODE"><a href="#MODE" class="headerlink" title="MODE"></a>MODE</h5><pre><code>如果設定 `&#123; mode: &#39;closed&#39; &#125;`，即表示沒辦法透過 js 取得 `myCustomElem.shadowRoot`。表示沒有辦法透過外層直接改變 shadow DOM 的內容。</code></pre>
 <ol start="3">
 <li>html template</li>
@@ -146,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7jmll000969pqao7r57ir" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7oez400097zpqciww406r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +221,7 @@
 <p>要解決這個問題就是用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure>
 
-<h3 id="x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;">&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
+<h3 id="103-105-116-64-x32-x2e-x39-46-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#103-105-116-64-x32-x2e-x39-46-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30;">&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
 <hr>
 <p>還原工作目錄與索引，會跟最後一次 commit 保持一樣<br>git reset –hard<br>（使用 hard 的話，會拋棄當前工作區的修改）</p>
 <p>退回到之前的版本，並且保留當前工作區的修改<br>git reset –soft &lt;版本號&gt;<br> <br>全部檔案取消索引<br>git reset HEAD<br> <br>單一檔案取消索引<br>git reset HEAD 檔案名稱 <br> <br>恢復單一檔案到最新 commit 狀態<br>git checkout 檔案名稱 <br> <br>刪除最近一次 commit<br>git reset –hard “HEAD^” <br> <br>上面語法如果刪除錯了可以再用此語法還原<br>git reset –hard ORIG_HEAD<br> <br>刪除最近一次 commit，但保留異動內容<br>git reset –soft “HEAD^” <br> <br>commit 後發現有幾個檔案忘了加入進去，想要補內容進去時<br>git commit –amend</p>
@@ -234,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7jmlk000769pqdu9q71xo" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7oez300077zpqb34493fd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -301,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/10/18/GSAP-ScrollTrigger/" data-id="ckhc7jmlj000669pq31gv280b" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/10/18/GSAP-ScrollTrigger/" data-id="ckhc7oez200067zpq7z08bz8p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -378,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckhc7jmlk000869pq9z546urh" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/10/03/LIFF-app-%E5%88%9D%E9%AB%94%E9%A9%97/" data-id="ckhc7oez300087zpq0v3qg8lg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckhc7jmlm000a69pq26ke1yzi" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/08/22/hello-world/" data-id="ckhc7oez5000a7zpq14ht0uqz" class="article-share-link">Share</a>
       
       
     </footer>

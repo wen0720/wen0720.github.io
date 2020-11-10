@@ -15,7 +15,7 @@
 <meta property="og:description" content="web component custom element 可以建立自己的客製化元素。 由CustomElementRegistry來產生自己客製的元件。 註冊新元件 12345&#x2F;&#x2F; CustomElementRegistry.define(&amp;#x27;component-name&amp;#x27;, class, [extend property])CustomElementRegistry.defin">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-11-10T16:45:12.000Z">
-<meta property="article:modified_time" content="2020-11-10T16:47:04.318Z">
+<meta property="article:modified_time" content="2020-11-10T16:50:45.440Z">
 <meta property="article:author" content="Paper Chen">
 <meta name="twitter:card" content="summary">
   
@@ -101,31 +101,30 @@
 <p> <strong>adoptedCallback</strong><br>  custom element 每次移到新的 document 時觸發。<br> <strong>attributeChangedCallback</strong></p>
 </li>
 </ol>
-<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><pre><code>custom element 通常有 2 種形式。
-- Autonomous custom elements。完全獨立的 element
-    不繼承任何其他元素。
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure>
-- Customized built-in elements。繼承已存在的 html element
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
+<h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>custom element 通常有 2 種形式。</p>
+<ul>
+<li><p>Autonomous custom elements。完全獨立的 element<br>不繼承任何其他元素。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;pop-info&gt;</span><br><span class="line">document.createElement(&#39;popup-info&#39;)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>Customized built-in elements。繼承已存在的 html element</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p is&#x3D;&quot;word-count&quot;&gt;</span><br><span class="line">document.createElement(&#39;p&#39;, &#123; is: &#39;word-count&#39; &#125;)</span><br></pre></td></tr></table></figure></code></pre>
 <ol start="2">
-<li><p>shadow DOM<br> shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
-<p> 所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-<p> 下面是 shadow DOM 的相關術語</p>
+<li><p>shadow DOM<br>shadow DOM 是 web component 封裝 style, html structure.. 的關鍵。</p>
+<p>所謂的 DOM(Document Object Model)。一種樹狀的節點結構。在標記語言中，代表各種不同的元素與文字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Simple DOM example&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;dinosaur.png&quot; alt&#x3D;&quot;A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.&quot;&gt;</span><br><span class="line">        &lt;p&gt;Here we will add a link to the &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;Mozilla homepage&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;section&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>下面是 shadow DOM 的相關術語</p>
 <ol>
-<li><p>shadow host: 一般的 DOM，shadow DOM is attach to</p>
-</li>
-<li><p>shadow tree: 在shadow DOM 裡的 DOM Tree </p>
-</li>
-<li><p>shadow boundary: shadow DOM 的結束，DOM 的開始</p>
-</li>
-<li><p>shadow root: shadow tree 的根節點</p>
+<li>shadow host: 一般的 DOM，shadow DOM is attach to</li>
+<li>shadow tree: 在shadow DOM 裡的 DOM Tree </li>
+<li>shadow boundary: shadow DOM 的結束，DOM 的開始</li>
+<li>shadow root: shadow tree 的根節點</li>
+</ol>
 <p>shadow DOM 的優點就是，在 shadow DOM 裡的樣式，不會影響外面的 DOM。但可以在外面是直接影響裡面的 shadow DOM（也可以不）</p>
 <p>其實 shadow DOM 並不是很新的技術，html 5 的 video 就是 shadow DOM 的實作。你會發現影片有很多的元件，播放控制項拉等等，可是無法從外部控制。</p>
 </li>
 </ol>
 </li>
-</ol>
+</ul>
 <h5 id="MODE"><a href="#MODE" class="headerlink" title="MODE"></a>MODE</h5><pre><code>如果設定 `&#123; mode: &#39;closed&#39; &#125;`，即表示沒辦法透過 js 取得 `myCustomElem.shadowRoot`。表示沒有辦法透過外層直接改變 shadow DOM 的內容。</code></pre>
 <ol start="3">
 <li>html template</li>
@@ -148,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7jmll000969pqao7r57ir" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/11/11/Web-Component/" data-id="ckhc7oez400097zpqciww406r" class="article-share-link">Share</a>
       
       
     </footer>

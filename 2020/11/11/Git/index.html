@@ -132,7 +132,7 @@
 <p>要解決這個問題就是用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure>
 
-<h3 id="x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#x67-105-116-x40-50-x2e-57-46-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;">&#x67;&#105;&#116;&#x40;&#50;&#x2e;&#57;&#46;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
+<h3 id="103-105-116-64-x32-x2e-x39-46-x30-開始預設行為不允許合併沒有共同祖先的分支"><a href="#103-105-116-64-x32-x2e-x39-46-x30-開始預設行為不允許合併沒有共同祖先的分支" class="headerlink" title="&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30; 開始預設行為不允許合併沒有共同祖先的分支"></a><a href="mailto:&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30;">&#103;&#105;&#116;&#64;&#x32;&#x2e;&#x39;&#46;&#x30;</a> 開始預設行為不允許合併沒有共同祖先的分支</h3><p>要的話，可以加 git pull … –allow-unrelated-histories</p>
 <hr>
 <p>還原工作目錄與索引，會跟最後一次 commit 保持一樣<br>git reset –hard<br>（使用 hard 的話，會拋棄當前工作區的修改）</p>
 <p>退回到之前的版本，並且保留當前工作區的修改<br>git reset –soft &lt;版本號&gt;<br> <br>全部檔案取消索引<br>git reset HEAD<br> <br>單一檔案取消索引<br>git reset HEAD 檔案名稱 <br> <br>恢復單一檔案到最新 commit 狀態<br>git checkout 檔案名稱 <br> <br>刪除最近一次 commit<br>git reset –hard “HEAD^” <br> <br>上面語法如果刪除錯了可以再用此語法還原<br>git reset –hard ORIG_HEAD<br> <br>刪除最近一次 commit，但保留異動內容<br>git reset –soft “HEAD^” <br> <br>commit 後發現有幾個檔案忘了加入進去，想要補內容進去時<br>git commit –amend</p>
@@ -144,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7jmlk000769pqdu9q71xo" class="article-share-link">Share</a>
+      <a data-url="https://wen0720.github.io/2020/11/11/Git/" data-id="ckhc7oez300077zpqb34493fd" class="article-share-link">Share</a>
       
       
     </footer>
